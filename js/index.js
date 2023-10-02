@@ -12,28 +12,56 @@ goButton.onclick = function(){
     var tableRowElement = document.createElement( 'tr');
 
     var numberOfRows = 1;
-    var numberOfColumns = 1;
+    var numberOfCells = 1;
     var myRow = new Number(rowInput.value);
     var myColumn = new Number(columnInput.value);
     var rowsInTable = 1;
 
     do{
 
-        var tableCellElement = document.createElement( 'td');
-        textElement = document.createTextNode(numberOfColumns);
-        tableCellElement.appendChild(textElement);
-        tableRowElement.appendChild( tableCellElement);
-        numberOfColumns = numberOfColumns + 1;
-        tableElement.appendChild(tableRowElement);  
+        var numberOfColumns = 1;
 
-        if(numberOfColumns % myColumn == 0 && numberOfColumns / myColumn == 1 && numberOfRows <= myRow){
-            var tableRowElement = document.createElement( 'tr');
+        do{
+
+            var tableCellElement = document.createElement( 'td');
+            textElement = document.createTextNode(numberOfCells);
+            tableCellElement.appendChild(textElement);
+            tableRowElement.appendChild( tableCellElement);
+            tableElement.appendChild(tableRowElement);  
+            numberOfColumns = numberOfColumns + 1;
+            numberOfCells = numberOfCells + 1;
+            numberOfCells.id  = numberOfCells;
+    
+
+            /*if(numberOfColumns == myColumn + 1){
+            tableRowElement = document.createElement( 'tr');
             rowsInTable = rowsInTable + 1;
             tableElement.appendChild(tableRowElement);  
+            }*/
+
         }
+        while(numberOfColumns  != myColumn + 1);
+
+        var tableRowElement = document.createElement( 'tr');
+        tableElement.appendChild(tableRowElement);  
+        numberOfRows = numberOfRows + 1; 
+        
+
 
     }
-    while(numberOfColumns  != myColumn);
+    while(numberOfRows != myRow + 1);
+
+
+    var idOfCell = 1;
+    var myCell = numberOfCells;
+    numberOfCells = 1;
+
+    for (; numberOfCells <= myCell; numberOfCells++){
+
+        document.getElementById(idOfCell);
+        
+        idOfCell += 1;
+    }
 
 
 
