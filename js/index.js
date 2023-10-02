@@ -29,8 +29,8 @@ goButton.onclick = function(){
             tableRowElement.appendChild( tableCellElement);
             tableElement.appendChild(tableRowElement);  
             numberOfColumns = numberOfColumns + 1;
+            numberOfCells.id  = 'id' + numberOfCells;
             numberOfCells = numberOfCells + 1;
-            numberOfCells.id  = numberOfCells;
     
 
             /*if(numberOfColumns == myColumn + 1){
