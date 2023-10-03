@@ -2,6 +2,7 @@ var body = document.getElementById('Sieb');
 var rowInput = document.getElementById('row-input');
 var columnInput = document.getElementById('column-input');
 var goButton = document.getElementById('go-button');
+var nextStepButton = document.getElementById('next-step-button');
 
 goButton.onclick = function(){
 
@@ -28,9 +29,9 @@ goButton.onclick = function(){
             tableCellElement.appendChild(textElement);
             tableRowElement.appendChild( tableCellElement);
             tableElement.appendChild(tableRowElement);  
-            numberOfColumns = numberOfColumns + 1;
-            numberOfCells.id  = 'id' + numberOfCells;
-            numberOfCells = numberOfCells + 1;
+            numberOfColumns += 1;
+            tableCellElement.id  = 'id' + numberOfCells;
+            numberOfCells += 1;
     
 
             /*if(numberOfColumns == myColumn + 1){
@@ -58,12 +59,27 @@ goButton.onclick = function(){
 
     for (; numberOfCells <= myCell; numberOfCells++){
 
-        document.getElementById(idOfCell);
+        document.getElementById('id' + idOfCell);
         
         idOfCell += 1;
     }
+   
+    var currentCell = document.getElementById('currentCellId');
 
+    nextStepButton.onclick = function(){
 
+       var hideNrOne = document.getElementById('id1');  
+       hideNrOne.style.visibility = "hidden";
+       if(idOfCell <= myCell){
+
+            document.getElementById('id' + idOfCell);
+            currentCell = 
+            idOfCell += 1;
+        }
+
+    }
+
+   
 
    /* do{
 
