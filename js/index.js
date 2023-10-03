@@ -4,93 +4,81 @@ var columnInput = document.getElementById('column-input');
 var goButton = document.getElementById('go-button');
 var nextStepButton = document.getElementById('next-step-button');
 
-goButton.onclick = function(){
+goButton.onclick = function () {
 
-    const tableElement= document.createElement( 'table');
-    body.appendChild( tableElement);
+    const tableElement = document.createElement('table');
+    body.appendChild(tableElement);
 
-
-    var tableRowElement = document.createElement( 'tr');
+    var tableRowElement = document.createElement('tr');
 
     var numberOfRows = 1;
     var numberOfCells = 1;
     var myRow = new Number(rowInput.value);
     var myColumn = new Number(columnInput.value);
-    var rowsInTable = 1;
 
-    do{
+    do {
 
         var numberOfColumns = 1;
 
-        do{
+        do {
 
-            var tableCellElement = document.createElement( 'td');
+            var tableCellElement = document.createElement('td');
             textElement = document.createTextNode(numberOfCells);
             tableCellElement.appendChild(textElement);
-            tableRowElement.appendChild( tableCellElement);
-            tableElement.appendChild(tableRowElement);  
+            tableRowElement.appendChild(tableCellElement);
+            tableElement.appendChild(tableRowElement);
             numberOfColumns += 1;
-            tableCellElement.id  = 'id' + numberOfCells;
+            tableCellElement.id = 'id' + numberOfCells;
             numberOfCells += 1;
-    
-
-            /*if(numberOfColumns == myColumn + 1){
-            tableRowElement = document.createElement( 'tr');
-            rowsInTable = rowsInTable + 1;
-            tableElement.appendChild(tableRowElement);  
-            }*/
 
         }
-        while(numberOfColumns  != myColumn + 1);
+        while (numberOfColumns != myColumn + 1);
 
-        var tableRowElement = document.createElement( 'tr');
-        tableElement.appendChild(tableRowElement);  
-        numberOfRows = numberOfRows + 1; 
-        
-
+        var tableRowElement = document.createElement('tr');
+        tableElement.appendChild(tableRowElement);
+        numberOfRows = numberOfRows + 1;
 
     }
-    while(numberOfRows != myRow + 1);
+    while (numberOfRows != myRow + 1);
 
+    nextStepButton.onclick = function () {
 
-    var idOfCell = 1;
-    var myCell = numberOfCells;
-    numberOfCells = 1;
+        var currentCell = document.getElementById('currentCellId');
 
-    for (; numberOfCells <= myCell; numberOfCells++){
+        var idOfCell = 1;
+        var idOfLastCell = idOfCell - 1;
+        var myCell = numberOfCells;
+        numberOfCells = 1;
 
-        document.getElementById('id' + idOfCell);
-        
-        idOfCell += 1;
-    }
-   
-    var currentCell = document.getElementById('currentCellId');
+        var hideNrOne = document.getElementById('id1');
+        hideNrOne.style.visibility = "hidden";
 
-    nextStepButton.onclick = function(){
+        while (idOfCell <= myCell) {
 
-       var hideNrOne = document.getElementById('id1');  
-       hideNrOne.style.visibility = "hidden";
-       if(idOfCell <= myCell){
+            //const myTimeout = setTimeout(redCellNow, 1000);
 
-            document.getElementById('id' + idOfCell);
-            currentCell = 
+            //function redCellNow(){
+
+            var redCell = document.getElementById('id' + idOfCell);
+            redCell.style.backgroundColor = "red";
+            redCell.style.color = "white";
+
+            if (idOfCell != 1) {
+                var notRedCell = document.getElementById('id' + idOfLastCell);
+                notRedCell.style.backgroundColor = "white";
+                notRedCell.style.color = "black";
+            }
+
+            idOfLastCell += 1;
+            currentCell += 1;
             idOfCell += 1;
+            // }
+
+            // clearTimeout(myTimeout);
+
+
+
+
         }
-
     }
-
-   
-
-   /* do{
-
-        var tableCellElement = document.createElement( 'td');
-        textElement = document.createTextNode(numberOfColumns);
-        tableCellElement.appendChild(textElement);
-        tableRowElement.appendChild( tableCellElement);
-        numberOfColumns = numberOfColumns + 1;
-        tableElement.appendChild(tableRowElement);  
-
-    }
-    while(numberOfColumns -1 != myColumn);
-*/
 }
