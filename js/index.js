@@ -11,49 +11,32 @@ goButton.onclick = function () {
     body.appendChild(tableElement);
 
     var tableRowElement = document.createElement('tr');
-
-    var numberOfRows = 1;
-    var numberOfCells = 1;
     var myRow = new Number(rowInput.value);
     var myColumn = new Number(columnInput.value);
-    var numberOfColumns = 1;
+    var numberOfColumns = 0;
+
     do {
-
-        do {
-            tableElement.appendChild(tableRowElement);
-            numberOfColumns += 1;
-
-        }
-        while (numberOfColumns <= myColumn + 1);
-        var tableRowElement = document.createElement('tr');
-
         tableElement.appendChild(tableRowElement);
-        numberOfRows += 1;
+        numberOfColumns += 1;
     }
-    while (numberOfRows != myRow + 1);
+    while (numberOfColumns <= myColumn);
 
     numberOfCells = 1;
-    calculatedNumberOfCells = myRow * myColumn;
+    var calculatedNumberOfCells = myRow * myColumn;
     var columnCounter = 1;
 
     insertNumberButton.onclick = function () {
-        // if (numberOfRows != myRow + 1) {
-        //     var tableRowElement = document.createElement('tr');
-        //     tableElement.appendChild(tableRowElement);
-        //     numberOfRows += 1;
-        // }
+
         if (numberOfCells <= calculatedNumberOfCells) {
             var tableCellElement = document.createElement('td');
             tableRowElement.appendChild(tableCellElement);
             textElement = document.createTextNode(numberOfCells);
             tableCellElement.appendChild(textElement);
             tableCellElement.id = 'id' + numberOfCells;
-            
-            myColumn = new Number(columnInput.value);
+
             numberOfCells += 1;
 
             if (columnCounter != myColumn) {
-
                 columnCounter += 1;
             }
             else {
