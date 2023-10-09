@@ -3,6 +3,7 @@ var rowInput = document.getElementById('row-input');
 var columnInput = document.getElementById('column-input');
 var goButton = document.getElementById('go-button');
 var nextStepButton = document.getElementById('next-step-button');
+var insertNumberButton = document.getElementById('insert-number-button');
 
 goButton.onclick = function () {
 
@@ -15,70 +16,89 @@ goButton.onclick = function () {
     var numberOfCells = 1;
     var myRow = new Number(rowInput.value);
     var myColumn = new Number(columnInput.value);
-
+    var numberOfColumns = 1;
     do {
 
-        var numberOfColumns = 1;
-
         do {
-
-            var tableCellElement = document.createElement('td');
-            textElement = document.createTextNode(numberOfCells);
-            tableCellElement.appendChild(textElement);
-            tableRowElement.appendChild(tableCellElement);
             tableElement.appendChild(tableRowElement);
             numberOfColumns += 1;
-            tableCellElement.id = 'id' + numberOfCells;
-            numberOfCells += 1;
 
         }
-        while (numberOfColumns != myColumn + 1);
-
+        while (numberOfColumns <= myColumn + 1);
         var tableRowElement = document.createElement('tr');
-        tableElement.appendChild(tableRowElement);
-        numberOfRows = numberOfRows + 1;
 
+        tableElement.appendChild(tableRowElement);
+        numberOfRows += 1;
     }
     while (numberOfRows != myRow + 1);
 
-    nextStepButton.onclick = function () {
+    numberOfCells = 1;
+    calculatedNumberOfCells = myRow * myColumn;
+    var columnCounter = 1;
 
-        var currentCell = document.getElementById('currentCellId');
+    insertNumberButton.onclick = function () {
+        // if (numberOfRows != myRow + 1) {
+        //     var tableRowElement = document.createElement('tr');
+        //     tableElement.appendChild(tableRowElement);
+        //     numberOfRows += 1;
+        // }
+        if (numberOfCells <= calculatedNumberOfCells) {
+            var tableCellElement = document.createElement('td');
+            tableRowElement.appendChild(tableCellElement);
+            textElement = document.createTextNode(numberOfCells);
+            tableCellElement.appendChild(textElement);
+            tableCellElement.id = 'id' + numberOfCells;
+            
+            myColumn = new Number(columnInput.value);
+            numberOfCells += 1;
 
-        var idOfCell = 1;
-        var idOfLastCell = idOfCell - 1;
-        var myCell = numberOfCells;
-        numberOfCells = 1;
+            if (columnCounter != myColumn) {
 
-        var hideNrOne = document.getElementById('id1');
-        hideNrOne.style.visibility = "hidden";
-
-        while (idOfCell <= myCell) {
-
-            //const myTimeout = setTimeout(redCellNow, 1000);
-
-            //function redCellNow(){
-
-            var redCell = document.getElementById('id' + idOfCell);
-            redCell.style.backgroundColor = "red";
-            redCell.style.color = "white";
-
-            if (idOfCell != 1) {
-                var notRedCell = document.getElementById('id' + idOfLastCell);
-                notRedCell.style.backgroundColor = "white";
-                notRedCell.style.color = "black";
+                columnCounter += 1;
             }
-
-            idOfLastCell += 1;
-            currentCell += 1;
-            idOfCell += 1;
-            // }
-
-            // clearTimeout(myTimeout);
-
-
-
-
+            else {
+                tableRowElement = document.createElement('tr');
+                tableElement.appendChild(tableRowElement);
+                columnCounter = 1;
+            }
         }
     }
+
+    // var myCell = numberOfCells;
+
+    // if (idOfCell + 1 <= myCell) {
+
+    // nextStepButton.onclick = function () {
+
+    // var idOfCell = 1;
+    // numberOfCells = 1;
+
+    // var currentCell = document.getElementById('currentCellId');
+
+    // if (idOfCell == 1) {
+    //     var hideNrOne = document.getElementById('id1');
+    //     hideNrOne.style.visibility = "hidden";
+    //     idOfCell += 1;
+    // }
+
+    // else {
+
+    //     var idOfLastCell = idOfCell - 1;
+
+    //     var redCell = document.getElementById('id' + idOfCell);
+    //     redCell.style.backgroundColor = "red";
+    //     redCell.style.color = "white";
+
+    //     if (idOfCell != 1 && idOfCell != 2) {
+    //         var notRedCell = document.getElementById('id' + idOfLastCell);
+    //         notRedCell.style.backgroundColor = "white";
+    //         notRedCell.style.color = "black";
+    //     }
+
+    //     idOfLastCell += 1;
+    //     currentCell += 1;
+    //     idOfCell += 1;
+    //}
+    // }
+    // }
 }
