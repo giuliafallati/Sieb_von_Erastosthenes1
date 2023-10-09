@@ -18,17 +18,17 @@ goButton.onclick = function () {
     var calculatedNumberOfCells = myRow * myColumn;
     var columnCounter = 1;
 
-    //Columns einfügen
+    //Columns einfuegen
     do {
         tableElement.appendChild(tableRowElement);
         numberOfColumns += 1;
     }
     while (numberOfColumns <= myColumn);
 
-    //Button für Zahlen einfügen
+    //Button für Zahlen einfuegen
     insertNumberButton.onclick = function () {
 
-        //Zahlen einfügen
+        //Zahlen einfuegen
         if (numberOfCells <= calculatedNumberOfCells) {
             var tableCellElement = document.createElement('td');
             tableRowElement.appendChild(tableCellElement);
@@ -38,12 +38,12 @@ goButton.onclick = function () {
 
             numberOfCells += 1;
 
-            //Anzahl Columns zählen bis es neue Row braucht
+            //Anzahl Columns zaehlen bis es neue Row braucht
             if (columnCounter != myColumn) {
                 columnCounter += 1;
             }
-            
-            //Neue Row einfügen
+
+            //Neue Row einfuegen
             else {
                 tableRowElement = document.createElement('tr');
                 tableElement.appendChild(tableRowElement);
