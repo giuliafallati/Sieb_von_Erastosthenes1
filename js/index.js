@@ -52,41 +52,38 @@ goButton.onclick = function () {
         }
     }
 
-    // var myCell = numberOfCells;
+    var idOfCell = 1;
 
-    // if (idOfCell + 1 <= myCell) {
+    //Button für Feld markieren
+    nextStepButton.onclick = function () {
 
-    // nextStepButton.onclick = function () {
+        if (idOfCell <= calculatedNumberOfCells) {
 
-    // var idOfCell = 1;
-    // numberOfCells = 1;
+            //Feld mit Nr. 1 verstecken
+            if (idOfCell == 1) {
+                var hideNrOne = document.getElementById('id1');
+                hideNrOne.style.visibility = "hidden";
+            }
 
-    // var currentCell = document.getElementById('currentCellId');
+            //Felder anders einfaerben
+            else if (idOfCell != 1) {
 
-    // if (idOfCell == 1) {
-    //     var hideNrOne = document.getElementById('id1');
-    //     hideNrOne.style.visibility = "hidden";
-    //     idOfCell += 1;
-    // }
+                var idOfLastCell = idOfCell - 1;
 
-    // else {
+                //ausgewaehltes Feld in anders einfaerben
+                var redCell = document.getElementById('id' + idOfCell);
+                redCell.style.backgroundColor = "rgb(255, 220, 144)";
 
-    //     var idOfLastCell = idOfCell - 1;
+                //Das vorherige Feld wieder normal einfaerben
+                if ((idOfCell != 1 && idOfCell != 2) || idOfCell == calculatedNumberOfCells) {
+                    var notRedCell = document.getElementById('id' + idOfLastCell);
+                    notRedCell.style.backgroundColor = "rgb(255, 239, 204)";
+                }
 
-    //     var redCell = document.getElementById('id' + idOfCell);
-    //     redCell.style.backgroundColor = "red";
-    //     redCell.style.color = "white";
+                idOfLastCell += 1;
+            }
 
-    //     if (idOfCell != 1 && idOfCell != 2) {
-    //         var notRedCell = document.getElementById('id' + idOfLastCell);
-    //         notRedCell.style.backgroundColor = "white";
-    //         notRedCell.style.color = "black";
-    //     }
-
-    //     idOfLastCell += 1;
-    //     currentCell += 1;
-    //     idOfCell += 1;
-    //}
-    // }
-    // }
+            idOfCell += 1;
+        }
+    }
 }
