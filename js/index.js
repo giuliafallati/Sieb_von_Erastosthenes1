@@ -1,11 +1,63 @@
 var body = document.getElementById('Sieb');
 var rowInput = document.getElementById('row-input');
 var columnInput = document.getElementById('column-input');
-var goButton = document.getElementById('go-button');
-var nextStepButton = document.getElementById('next-step-button');
-var insertNumberButton = document.getElementById('insert-number-button');
+const goButton = document.getElementsByClassName('go-button')[0];
+const nextStepButton = document.getElementsByClassName('next-step-button')[0];
+const insertNumberButton = document.getElementsByClassName('insert-number-button')[0];
+const tableElement = document.createElement('table');
+let tableRowElement = document.createElement('tr');
+let tableCellElement = document.createElement('td');
+
+var data = {
+    columns: [],
+    columnsId: 0,
+    rows: [],
+    rowsId: 0,
+    cells: [],
+    cellsId: 0
+}
+
+function render() {
+     while (tableElement.lastElementChild) {
+         tableElement.removeChild(tableElement.lastElementChild);
+     }
+
+    data.columns.forEach(function (value) {
+        
+        let primeNumber = document.createTextNode(value);
+        body.appendChild(tableElement);
+        tableElement.appendChild(tableRowElement);
+        tableRowElement.appendChild(tableCellElement);
+        tableCellElement.appendChild(primeNumber);
+    })
+}
+
+
 
 goButton.onclick = function () {
+    let addColumn = data.columnsId + 1;
+    data.columns.push(addColumn);
+    data.columnsId = addColumn;
+
+    let addRows = data.rowsId + 1;
+    data.rows.push(addRows);
+    data.rowsId = addRows;
+
+    let addCell = data.cellsId + 1;
+    data.cells.push(addCell);
+    data.cellsId = addCell;
+
+    render();
+};
+
+// insertNumberButton.onclick = function () {
+//     let addRow = data.rowsId + 1;
+//     data.rows.push(addRow);
+//     data.rowsId = addRow;
+//     render()
+// }
+
+/*goButton.onclick = function () {
 
     const tableElement = document.createElement('table');
     body.appendChild(tableElement);
@@ -20,11 +72,14 @@ goButton.onclick = function () {
     var idOfCell = 1;
 
     //Columns einfuegen
-    do {
+   do {
         tableElement.appendChild(tableRowElement);
         numberOfColumns += 1;
     }
     while (numberOfColumns <= myColumn);
+
+
+    
 
     //Button für Zahlen einfuegen
     insertNumberButton.onclick = function () {
@@ -85,4 +140,4 @@ goButton.onclick = function () {
             idOfCell += 1;
         }
     }
-}
+}*/
